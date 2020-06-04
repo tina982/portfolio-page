@@ -28,6 +28,9 @@ function pickSpotifySong() {
     createIframe(url.concat(id))
 }
 
+/**
+* Create iframe with source as src.
+ */
 function createIframe(source) {
     let iframe = document.createElement('iframe');
     iframe.src = source; 
