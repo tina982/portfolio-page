@@ -16,25 +16,48 @@
 * IDs of Spotify songs.
  */
  const ids =
-      ['2uHMTG5xr9Xk7MrXIWrVUH', '0WSTInLqMrT9po0LAHpZCJ', '0TR8KRs0PwLQk1aG21aUW7', 
-      '0BVRfqRHpYnXnv9t5yp9ai', '0yfFGJt1oeODR9VZYv12sT', '6GHoddehRDGxilfWRzksix'];
+	['2uHMTG5xr9Xk7MrXIWrVUH', '0WSTInLqMrT9po0LAHpZCJ', '0TR8KRs0PwLQk1aG21aUW7', 
+	'0BVRfqRHpYnXnv9t5yp9ai', '0yfFGJt1oeODR9VZYv12sT', '6GHoddehRDGxilfWRzksix'];
 
 /**
 * Picks a Spotify song to display.
  */
 function pickSpotifySong() {
-    let id = ids[Math.floor(Math.random() * ids.length)];
-    let url = 'https://open.spotify.com/embed/track/'
-    createIframe(url.concat(id))
+	let id = ids[Math.floor(Math.random() * ids.length)];
+	let url = 'https://open.spotify.com/embed/track/'
+	createIframe(url.concat(id))
 }
 
 /**
 * Create iframe with source as src.
  */
 function createIframe(source) {
-    let iframe = document.createElement('iframe');
-    iframe.src = source; 
-    iframe.style.width = '300px';
-    iframe.style.height = '80px';
-    document.getElementById('song-container').appendChild(iframe);
+	let iframe = document.createElement('iframe');
+	iframe.src = source; 
+	iframe.style.width = '300px';
+	iframe.style.height = '80px';
+	document.getElementById('song-container').appendChild(iframe);
 }
+
+/**
+* Get data from DataServlet.
+ */
+ function getDataServlet() {
+	 const commentsContainer = document.getElementById('comments-container');
+	 fetch('/data')
+	 .then((response) => response.json())
+	 .then((comments) => {
+		 comments.forEach(comments => {
+			commentsContainer.appendChild(createListElement(comments));
+		 });
+	 });
+ }
+
+ /**
+ * Create a list element containing the comment.
+  */
+	function createListElement(data) {
+		const listElement = document.createElement('li');
+		listElement.innerText = data;
+		return listElement;
+	}

@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="pickSpotifySong()">
+  <body onload="pickSpotifySong(); getDataServlet()">
     <div id="content">
       <h1>Tina Liu</h1>
       <p>Currently listening:</p>
       <div id="song-container"></div>
+      <div id="comments-container"></div>
     </div>
   </body>
   <img src="/images/rilakkuma.png" id="background">
