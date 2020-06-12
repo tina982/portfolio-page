@@ -13,16 +13,28 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+* IDs of Spotify songs.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+ const ids =
+      ['2uHMTG5xr9Xk7MrXIWrVUH', '0WSTInLqMrT9po0LAHpZCJ', '0TR8KRs0PwLQk1aG21aUW7', 
+      '0BVRfqRHpYnXnv9t5yp9ai', '0yfFGJt1oeODR9VZYv12sT', '6GHoddehRDGxilfWRzksix'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+/**
+* Picks a Spotify song to display.
+ */
+function pickSpotifySong() {
+    let id = ids[Math.floor(Math.random() * ids.length)];
+    let url = 'https://open.spotify.com/embed/track/'
+    createIframe(url.concat(id))
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+/**
+* Create iframe with source as src.
+ */
+function createIframe(source) {
+    let iframe = document.createElement('iframe');
+    iframe.src = source; 
+    iframe.style.width = '300px';
+    iframe.style.height = '80px';
+    document.getElementById('song-container').appendChild(iframe);
 }

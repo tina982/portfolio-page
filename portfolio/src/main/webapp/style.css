@@ -2,8 +2,11 @@
   margin-left: auto;
   margin-right: auto;
   width: 650px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-#greeting-container {
-  margin-top: 20px;
+#background {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
 }
