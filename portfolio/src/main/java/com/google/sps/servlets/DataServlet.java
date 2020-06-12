@@ -53,7 +53,6 @@ public class DataServlet extends HttpServlet {
       Comment commentObj = new Comment(id, comment, timestamp);
       comments.add(commentObj);
     }
-
 		response.setContentType("application/json;");
 		response.getWriter().println(commentsToJson(comments));
   }
