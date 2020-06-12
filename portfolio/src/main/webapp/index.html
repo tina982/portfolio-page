@@ -6,12 +6,16 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="pickSpotifySong(); getDataServlet()">
+  <body onload="onLoad()">
     <div id="content">
       <h1>Tina Liu</h1>
       <p>Currently listening:</p>
       <div id="song-container"></div>
-      <div id="comments-container"></div>
+			<div id="comments-container"></div>
+			<form action="/data" method="POST" autocomplete="off">
+				<input type="text" name="comment-text">
+				<input type="submit" value="Submit"/>
+			</form>
     </div>
   </body>
   <img src="/images/rilakkuma.png" id="background">

@@ -15,7 +15,7 @@
 /**
 * IDs of Spotify songs.
  */
- const ids =
+ const IDS =
 	['2uHMTG5xr9Xk7MrXIWrVUH', '0WSTInLqMrT9po0LAHpZCJ', '0TR8KRs0PwLQk1aG21aUW7', 
 	'0BVRfqRHpYnXnv9t5yp9ai', '0yfFGJt1oeODR9VZYv12sT', '6GHoddehRDGxilfWRzksix'];
 
@@ -23,7 +23,7 @@
 * Picks a Spotify song to display.
  */
 function pickSpotifySong() {
-	let id = ids[Math.floor(Math.random() * ids.length)];
+	let id = IDS[Math.floor(Math.random() * ids.length)];
 	let url = 'https://open.spotify.com/embed/track/'
 	createIframe(url.concat(id))
 }
@@ -42,22 +42,30 @@ function createIframe(source) {
 /**
 * Get data from DataServlet.
  */
- function getDataServlet() {
-	 const commentsContainer = document.getElementById('comments-container');
-	 fetch('/data')
-	 .then((response) => response.json())
-	 .then((comments) => {
-		 comments.forEach(comments => {
-			commentsContainer.appendChild(createListElement(comments));
-		 });
-	 });
- }
+function getDataServlet() {
+	const commentsContainer = document.getElementById('comments-container');
+	fetch('/data')
+	.then((response) => response.json())
+	.then((comments) => {
+		comments.forEach(commentObj => {
+		commentsContainer.appendChild(displayComment(commentObj));
+		});
+	});
+}
 
  /**
- * Create a list element containing the comment.
+ * Display a comment 
   */
-	function createListElement(data) {
-		const listElement = document.createElement('li');
-		listElement.innerText = data;
-		return listElement;
-	}
+function displayComment(commentObj) {
+	let divElement = document.createElement('div');
+	divElement.textContent = commentObj.comment;
+	return divElement;
+}
+
+/**
+* Main function for when the page first loads.
+ */
+function onLoad() {
+	pickSpotifySong();
+	getDataServlet();
+}
